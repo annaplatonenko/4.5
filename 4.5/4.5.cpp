@@ -230,17 +230,69 @@ public:
 	}
 };
 
+int proverka(string n)
+{
+	int buf;
+	while (!(cin >> buf))
+	{
+		cout << "Некорректный ввод!!! Повторите ...\n";
+		cout << "Введите " << n << ':';
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+	}
+	return buf;
+}
+
 int main()
 {
 	setlocale(LC_ALL, "Russian");
+	
+	int number_players;
+	int field_size;
+	int collar_size;
+	string place;
+	string beach_name;
+	string stadium;
+	string team_name;
+
+	cout << "Mini_Football" << endl;
+	cout << "введите количество игроков: ";
+	number_players = proverka("количество игроков");
+	cout << "введите размер поля: ";
+	field_size = proverka("размер поля");
+	cout << "введите размер ворот: ";
+	collar_size = proverka("размер ворот");
+	cout << "введите место: ";
+	cin >> place;
+	Mini_Football* mini = new Mini_Football(number_players, field_size, collar_size, place);
+
+	cout << "Beach_Football" << endl;
+	cout << "введите количество игроков: ";
+	number_players = proverka("количество игроков");
+	cout << "введите размер поля: ";
+	field_size = proverka("размер поля");
+	cout << "введите пляж: ";
+	cin >> beach_name;
+	Beach_Football* beach = new Beach_Football(number_players, field_size, beach_name);
+
+	cout << "Rugby_Football" << endl;
+	cout << "введите количество игроков: ";
+	number_players = proverka("количество игроков");
+	cout << "введите размер поля: ";
+	field_size = proverka("размер поля");
+	cout << "введите стадион: ";
+	cin >> stadium;
+	cout << "введите название команды: ";
+	cin >> team_name;
+	Rugby_Football* rugby = new Rugby_Football(number_players, field_size, stadium, team_name);
+
+
 
 	//Mini_Football* mini = new Mini_Football(10, 70 * 100, 8 * 8, "stadium BSUIR");
 	//Beach_Football* beach = new Beach_Football(16, 70 * 100, "South Beach in Miami");
 	//Rugby_Football* rugby = new Rugby_Football(12, 70 * 100, "Twickenham", "DreamTeam");
 
-	Mini_Football* mini = new Mini_Football();
-	Beach_Football* beach = new Beach_Football();
-	Rugby_Football* rugby = new Rugby_Football();
+
 
 	/*cout << "Mini_Football:"  << endl;
 	cout << "количество игроков " << mini->getnumberplayers() << endl;
@@ -257,11 +309,11 @@ int main()
 	cout << "стадион " << rugby->getstadium() << endl;
 	cout << "название команды " << rugby->getteam_name() << endl;*/
 
-	mini->vvod();
-	beach->vvod();
-	rugby->vvod();
+	//mini->vvod();
+	//beach->vvod();
+    //rugby->vvod();
+	
 	cout << endl;
-
 	mini->printall();
 	beach->printall();
 	rugby->printall();
